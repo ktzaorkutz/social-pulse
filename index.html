@@ -662,11 +662,11 @@
 <script>
 // ── DATA ─────────────────────────────────────────────────────────────────────
 const PLATFORMS = [
-  { id:"instagram", label:"Instagram", icon:"📸", color:"var(--ig)" },
-  { id:"twitter",   label:"X / Twitter", icon:"𝕏",  color:"var(--tw)" },
-  { id:"facebook",  label:"Facebook",  icon:"f",   color:"var(--fb)" },
-  { id:"linkedin",  label:"LinkedIn",  icon:"in",  color:"var(--li)" },
-  { id:"tiktok",    label:"TikTok",    icon:"♪",   color:"var(--tk)" },
+  { id:"instagram", label:"Instagram", icon:"📸", color:"var(--ig)", hex:"#E1306C" },
+  { id:"twitter",   label:"X / Twitter", icon:"𝕏",  color:"var(--tw)", hex:"#1DA1F2" },
+  { id:"facebook",  label:"Facebook",  icon:"f",   color:"var(--fb)", hex:"#1877F2" },
+  { id:"linkedin",  label:"LinkedIn",  icon:"in",  color:"var(--li)", hex:"#0A66C2" },
+  { id:"tiktok",    label:"TikTok",    icon:"♪",   color:"var(--tk)", hex:"#EE1D52" },
 ];
 
 const POSTS = [
@@ -785,7 +785,7 @@ Respond ONLY with a JSON array of 3 strings, no markdown, no explanation.`;
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1000,
         messages: [{ role: 'user', content: prompt }]
       })
@@ -840,7 +840,7 @@ function renderPostCard() {
     const sel = state.selPlatforms.includes(p.id);
     btn.className = 'plat-btn';
     btn.style.borderColor = sel ? p.color : 'rgba(255,255,255,0.1)';
-    btn.style.background = sel ? p.color.replace('var(','').replace(')','') + '22' : 'rgba(255,255,255,0.03)';
+    btn.style.background = sel ? p.hex + '22' : 'rgba(255,255,255,0.03)';
     btn.style.color = sel ? '#fff' : 'var(--muted)';
     btn.innerHTML = `${p.icon} ${p.label}${sel ? ' <span style="color:'+p.color+'">✓</span>' : ''}`;
     btn.onclick = () => {
